@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Text;
-Stopwatch sw = Stopwatch.StartNew();
 
 var result = ReturnMinDecimals(8971324560);
 
@@ -10,15 +9,7 @@ foreach (var item in result.Item2)
     Console.Write($"{item} ");
 }
 
-sw.Stop();
-
-Console.WriteLine($"\n{sw.Elapsed}");
-
-sw.Restart();
-
 PrintMinDecimals(828283754998);//actually 6 times faster
-
-Console.WriteLine(sw.Elapsed);
 
 (int, List<long>) ReturnMinDecimals(long number)
 {
@@ -32,7 +23,6 @@ Console.WriteLine(sw.Elapsed);
         if (number.ToString().Contains($"{i}"))//looking for biggest number, if not a current i - skip
         {
             numberAsString = number.ToString();
-            //Console.Write(number + "   ");//debug
         
             foreach (var ch in numberAsString)//mask of 01 for number substraction
             {
@@ -45,8 +35,6 @@ Console.WriteLine(sw.Elapsed);
             outNumbers.Add(long.Parse(stringBuilder.ToString()));//add mask to output (needed)
             number -= long.Parse(stringBuilder.ToString()); //decrease input number to cycle further
             count++;//counter of numbers (needed)
-
-            //Console.WriteLine(number); //debug
         }
 
         stringBuilder.Clear();
@@ -68,7 +56,6 @@ void PrintMinDecimals(long number)
         if (number.ToString().Contains($"{i}"))//looking for biggest number, if not a current i - skip
         {
             numberAsString = number.ToString();
-            //Console.Write(number + "   ");//debug
 
             foreach (var ch in numberAsString)//mask of 01 for number substraction
             {
@@ -81,8 +68,6 @@ void PrintMinDecimals(long number)
             outNumbers.Add(long.Parse(stringBuilder.ToString()));//add mask to output (needed)
             number -= long.Parse(stringBuilder.ToString()); //decrease input number to cycle further
             count++;//counter of numbers (needed)
-
-            //Console.WriteLine(number); //debug
         }
 
         stringBuilder.Clear();
