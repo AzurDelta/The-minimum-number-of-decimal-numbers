@@ -1,17 +1,32 @@
 ﻿using System.Diagnostics;
 using System.Text;
 
-var result = ReturnMinDecimals(8971324560);
+/*
+var result = ReturnMinDecimals(9876543210);
 
-Console.WriteLine(result.Item1);
 foreach (var item in result.Item2)
 {
     Console.Write($"{item} ");
+}*/
+PrintMinDecimals(9876543210);
+
+Stopwatch sw = Stopwatch.StartNew();
+Console.WriteLine(maxAmountOfDecimal("9876543210"));
+sw.Stop();
+Console.WriteLine(sw);
+
+
+int maxAmountOfDecimal(string n)//current version of task text
+{
+    for (int i = 9; i > 0; i--)
+    {
+        if (n.Contains($"{i}"))//looking for biggest number
+           return i;        
+    }
+    return -1;
 }
 
-PrintMinDecimals(828283754998);//actually 6 times faster
-
-(int, List<long>) ReturnMinDecimals(long number)
+(int, List<long>) ReturnMinDecimals(long number) //was done to previos task text \|/
 {
     int len;
     List<long> outNumbers = new();
@@ -32,7 +47,7 @@ PrintMinDecimals(828283754998);//actually 6 times faster
                     stringBuilder.Append('0');
             }
             
-            outNumbers.Add(long.Parse(stringBuilder.ToString()));//add mask to output (needed)
+            //outNumbers.Add(long.Parse(stringBuilder.ToString()));//add mask to output (was needed)
             number -= long.Parse(stringBuilder.ToString()); //decrease input number to cycle further
             count++;//counter of numbers (needed)
         }
